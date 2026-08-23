@@ -1,0 +1,68 @@
+# --- Local editor/tool config (keep out of the shared repo) ---
+# Machine-local tooling notes are excluded via .git/info/exclude, which is not
+# committed — this file stays free of local tool names.
+.cursor/
+.agents/
+*.local.md
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Node / frontend ---
+node_modules/
+dist/
+build/
+.vite/
+.next/
+.env
+.env.*
+!.env.example
+
+# --- Supabase CLI (keep config.toml; ignore generated local state) ---
+# Broad match: the CLI writes .temp/.branches wherever it is run, not just web/backend.
+**/supabase/.temp/
+**/supabase/.branches/
+
+# --- Firmware build ---
+device/mcu/**/build/
+*.elf
+*.bin
+*.hex
+.pio/
+
+# --- AI / data (store pointers, not large binaries) ---
+ml/datasets/**/*.zip
+ml/datasets/**/*.npy
+ml/datasets/**/raw/
+device/mpu/models/**/*.tflite
+*.onnx
+*.pt
+*.pth
+
+# --- Design export cache (keep the .dc.html spec + assets, not the paste cache) ---
+docs/design-reference/uploads/
+
+# --- Bench-session capture artifacts (reproducible via scripts/, not source) ---
+scripts/bench-logs/
+device/mpu/bench/camera_check/output/
+
+# --- MPU runtime state (bandit experience DB + deterrent-event captures) ---
+device/mpu/data/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+*.swp
+.~lock.*#
+
+# --- Secrets ---
+secrets/
+*.key
+*.pem
+device/mcu/src/secrets.h
